@@ -18,7 +18,8 @@ class HashMap {
   get(key) {
     const index = this._findSlot(key);
     if (this._slots[index] === undefined) {
-      throw new Error('Key error');
+      // throw new Error('Key error');
+      return undefined;
     }
     return this._slots[index].value;
   }
@@ -29,12 +30,16 @@ class HashMap {
       this._resize(this._capacity * HashMap.SIZE_RATIO);
     }
     const index = this._findSlot(key);
+
+    if (!this._slots[index]) {
+      this.length++;
+    }
+
     this._slots[index] = {
       key,
       value,
       deleted: false
     };
-    this.length++;
   }
 
   _findSlot(key) {
