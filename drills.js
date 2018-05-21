@@ -1,9 +1,13 @@
 const HashMap = require('./hash');
+const HashMapCollision = require('./hash-map-collision');
 
 HashMap.MAX_LOAD_RATIO = 0.9;
 HashMap.SIZE_RATIO = 3;
+HashMapCollision.MAX_LOAD_RATIO = 0.9;
+HashMapCollision.SIZE_RATIO = 3;
 
 const lor = new HashMap();
+const lorCollision = new HashMapCollision();
 
 function isPermutationPalindrome(str) {
   const perm = new HashMap();
@@ -95,7 +99,22 @@ function main() {
   // console.log(isPermutationPalindrome('acceeeearr'));
   // console.log(isPermutationPalindrome('north'));
   // console.log(isPermutationPalindrome('a man a plan a canal panama'));
-  console.log(anagramGrouping(['east', 'cars', 'acre', 'arcs', 'teas', 'eats', 'race']));
+  // console.log(anagramGrouping(['east', 'cars', 'acre', 'arcs', 'teas', 'eats', 'race']));
+
+  lorCollision.set('Hobbit', 'Bilbo');
+  lorCollision.set('Hobbit', 'Frodo');
+  lorCollision.set('Wizard', 'Gandolf');
+  lorCollision.set('Human', 'Aragon');
+  lorCollision.set('Elf', 'Legolas');
+  lorCollision.set('Maiar', 'The Necromancer');
+  lorCollision.set('Maiar', 'Sauron');
+  lorCollision.set('RingBearer', 'Gollum');
+  lorCollision.set('LadyOfLight', 'Galadriel');
+  lorCollision.set('HalfElven', 'Arwen');
+  lorCollision.set('Ent', 'Treebeard');
+
+  console.log(JSON.stringify(lorCollision, null, 2));
+
 }
 
 main();
