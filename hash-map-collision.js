@@ -38,11 +38,15 @@ class HashMapCollision {
       this.length++;
     }
 
-    if (!this._slots[index]) {
-      this._slots[index] = new LinkedList();
-      this._slots[index].insertFirst({ key, value, deleted: false });
+    if (typeof value === 'object') {
+      this._slots[index] = value;
     } else {
-      this._slots[index].insertLast({ key, value, deleted: false });
+      if (!this._slots[index]) {
+        this._slots[index] = new LinkedList();
+        this._slots[index].insertFirst({ key, value, deleted: false });
+      } else {
+        this._slots[index].insertLast({ key, value, deleted: false });
+      }
     }
 
   }
@@ -50,6 +54,24 @@ class HashMapCollision {
   _findSlot(key) {
     const hash = this._hashString(key);
     const start = hash % this._capacity;
+    // const index = hash % this._capacity;
+    // let slot = this._slots[index];
+
+    // if (slot === undefined) {
+    //   return this._slots[index] = { key };
+    // }
+
+    // if (slot.key === key) {
+    //   return slot;
+    // }
+
+    // while (slot.next) {
+    //   slot = slot.next;
+    //   if (slot.key === key) {
+    //     return slot;
+    //   }
+    // }
+
 
     for (let i = 0; i < start + this._capacity; i++) {
       const index = i % this._capacity;
@@ -70,7 +92,7 @@ class HashMapCollision {
 
     for (const list of oldSlots) {
       if (list !== undefined && !list.head.value.deleted) {
-        this.set(list.head.value.key, list.head.value.value);
+        this.set(list.head.value.key, list);
       }
       // if (list.head.next) {
       //   this.set(list.head.next.value.key, list.head.next.value.value);

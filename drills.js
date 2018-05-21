@@ -56,6 +56,7 @@ function anagramGrouping(arr) {
     }
   }
 
+
   const combined = new HashMap();
 
   for (let i = 0; i < arr.length; i++) {
@@ -103,6 +104,7 @@ function main() {
 
   lorCollision.set('Hobbit', 'Bilbo');
   lorCollision.set('Hobbit', 'Frodo');
+  lorCollision.set('Hobbit', 'Sam');
   lorCollision.set('Wizard', 'Gandolf');
   lorCollision.set('Human', 'Aragon');
   lorCollision.set('Elf', 'Legolas');
