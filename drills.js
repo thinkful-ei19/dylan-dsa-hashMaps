@@ -3,7 +3,7 @@ const HashMap = require('./hash');
 HashMap.MAX_LOAD_RATIO = 0.9;
 HashMap.SIZE_RATIO = 3;
 
-// const lor = new HashMap();
+const lor = new HashMap();
 
 
 function isPermutationPalindrome(str) {
@@ -17,18 +17,26 @@ function isPermutationPalindrome(str) {
     perm.set(letters[i], count);
   }
 
-  let numOfOdd = 0;
 
-  console.log(perm);
+  const oddKeys = new HashMap();
 
-  for (let i = 0; i < perm.length; i++) {
-    // console.log(perm._slots[i]);
-    if (perm._slots[i].value % 2 !== 0) {
-      numOfOdd++;
+  for (let i = 0; i < letters.length; i++) {
+    let value = perm.get(letters[i]);
+    if (value % 2 === 0) {
+      continue;
+    } else {
+      oddKeys.set(letters[i], value);
     }
   }
 
-  if (numOfOdd > 1) {
+  // for (let i = 0; i < perm.length; i++) {
+  //   // console.log(perm._slots[i]);
+  //   if (perm._slots[i].value % 2 !== 0) {
+  //     numOfOdd++;
+  //   }
+  // }
+
+  if (oddKeys.length > 1) {
     return false;
   } else {
     return true;
@@ -55,10 +63,11 @@ function main() {
   // lor.set('HalfElven', 'Arwen');
   // lor.set('Ent', 'Treebeard');
   // console.log(JSON.stringify(lor, null, 2));
+  // console.log(lor);
   // console.log(lor.get('Maiar'));
-  console.log(isPermutationPalindrome('acceeearr'));
-  // console.log(isPermutationPalindrome('north'));
-  // console.log(isPermutationPalindrome('a man a plan a canal panama'));
+  console.log(isPermutationPalindrome('acceeeearr'));
+  console.log(isPermutationPalindrome('north'));
+  console.log(isPermutationPalindrome('a man a plan a canal panama'));
   // console.log(anagramGrouping(['east', 'cars', 'acre', 'arcs', 'teas', 'eats', 'race']));
 }
 
