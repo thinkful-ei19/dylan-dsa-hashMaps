@@ -19,8 +19,11 @@ function isPermutationPalindrome(str) {
 
   let numOfOdd = 0;
 
-  for (let i = 0; i < letters.length; i++) {
-    if (perm.get(letters[i]) % 2 !== 0) {
+  console.log(perm);
+
+  for (let i = 0; i < perm.length; i++) {
+    // console.log(perm._slots[i]);
+    if (perm._slots[i].value % 2 !== 0) {
       numOfOdd++;
     }
   }
@@ -31,6 +34,12 @@ function isPermutationPalindrome(str) {
     return true;
   }
 
+}
+
+function anagramGrouping(arr) {
+  let myHash = new HashMap();
+  // for (let i = 0; i < )
+  return arr;
 }
 
 function main() {
@@ -47,9 +56,10 @@ function main() {
   // lor.set('Ent', 'Treebeard');
   // console.log(JSON.stringify(lor, null, 2));
   // console.log(lor.get('Maiar'));
-  console.log(isPermutationPalindrome('accearr'));
-  console.log(isPermutationPalindrome('north'));
-  console.log(isPermutationPalindrome('a man a plan a canal panama'));
+  console.log(isPermutationPalindrome('acceeearr'));
+  // console.log(isPermutationPalindrome('north'));
+  // console.log(isPermutationPalindrome('a man a plan a canal panama'));
+  // console.log(anagramGrouping(['east', 'cars', 'acre', 'arcs', 'teas', 'eats', 'race']));
 }
 
 main();
