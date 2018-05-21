@@ -5,7 +5,6 @@ HashMap.SIZE_RATIO = 3;
 
 const lor = new HashMap();
 
-
 function isPermutationPalindrome(str) {
   const perm = new HashMap();
   const letters = str.toLowerCase().replace(/[^a-zA-Z0-9]/g, '');
@@ -16,7 +15,6 @@ function isPermutationPalindrome(str) {
     }
     perm.set(letters[i], count);
   }
-
 
   const oddKeys = new HashMap();
 
@@ -46,8 +44,37 @@ function isPermutationPalindrome(str) {
 
 function anagramGrouping(arr) {
   let myHash = new HashMap();
-  // for (let i = 0; i < )
-  return arr;
+  for (let i = 0; i < arr.length; i++) {
+    let ascCount = 0;
+    for (let j = 0; j < arr[i].length; j++) {
+      ascCount += arr[i].charCodeAt(j);
+      myHash.set(arr[i], ascCount);
+    }
+  }
+
+  const combined = new HashMap();
+
+  for (let i = 0; i < arr.length; i++) {
+    let value = myHash.get(arr[i]);
+    if (combined.get(value)) {
+      let currentArr = combined.get(value);
+      combined.set(value, [...currentArr, arr[i]]);
+    } else {
+      combined.set(value, [arr[i]]);
+    }
+  }
+
+  const final = [];
+
+  for (let i = 0; i < combined.length; i++) {
+
+    if (combined._slots[i]) {
+      final.push(combined._slots[i].value);
+    }
+  }
+
+  return final;
+  // return JSON.stringify(combined, null, 2);
 }
 
 function main() {
@@ -65,10 +92,10 @@ function main() {
   // console.log(JSON.stringify(lor, null, 2));
   // console.log(lor);
   // console.log(lor.get('Maiar'));
-  console.log(isPermutationPalindrome('acceeeearr'));
-  console.log(isPermutationPalindrome('north'));
-  console.log(isPermutationPalindrome('a man a plan a canal panama'));
-  // console.log(anagramGrouping(['east', 'cars', 'acre', 'arcs', 'teas', 'eats', 'race']));
+  // console.log(isPermutationPalindrome('acceeeearr'));
+  // console.log(isPermutationPalindrome('north'));
+  // console.log(isPermutationPalindrome('a man a plan a canal panama'));
+  console.log(anagramGrouping(['east', 'cars', 'acre', 'arcs', 'teas', 'eats', 'race']));
 }
 
 main();
