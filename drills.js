@@ -8,11 +8,11 @@ HashMap.SIZE_RATIO = 3;
 
 function isPermutationPalindrome(str) {
   const perm = new HashMap();
-  const letters = str.toLowerCase().replace(/[^a-zA-Z0-9]/g, '').split('');
+  const letters = str.toLowerCase().replace(/[^a-zA-Z0-9]/g, '');
   for (let i = 0; i < letters.length; i++) {
     let count = perm.get(letters[i]) || 1;
     if (perm.get(letters[i])) {
-      count = count + 1;
+      count++;
     }
     perm.set(letters[i], count);
   }
